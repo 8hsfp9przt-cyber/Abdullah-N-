@@ -9,59 +9,72 @@
 <style>
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     min-height: 100vh;
-overflow-x: hidden;
-    color: white;
     font-family: Arial, sans-serif;
+    color: white;
+
+    /* خلفية باتمان متحركة */
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+        url("https://i.imgur.com/6b1eKQy.gif")
+        center / cover fixed no-repeat;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    overflow-x: hidden;
+}
+
+/* تأثير ضباب متحرك */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255, 220, 0, 0.12),
+            transparent 35%
+        );
+
+    animation: fog 8s ease-in-out infinite alternate;
+}
+
+@keyframes fog {
+    from {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    to {
+        transform: scale(1.15);
+        opacity: 1;
+    }
 }
 
 .container {
     width: 90%;
-    max-width: 420px;
+    max-width: 430px;
     text-align: center;
+    padding: 30px 0;
 }
 
+/* شعار باتمان */
 .batman {
-    font-size: 90px;
+    font-size: 75px;
+    margin-bottom: 15px;
+
     filter: drop-shadow(0 0 15px #ffd900);
-    animation: float 2s infinite ease-in-out;
-}
 
-h1 {
-    color: #ffd900;
-    font-size: 36px;
-    margin: 10px 0;
-}
-
-.subtitle {
-    color: #aaa;
-    margin-bottom: 30px;
-}
-
-a {
-    display: block;
-    padding: 16px;
-    margin: 14px 0;
-    border: 2px solid #ffd900;
-    border-radius: 12px;
-    color: white;
-    text-decoration: none;
-    background: #111;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-a:hover {
-    background: #ffd900;
-    color: black;
-    transform: scale(1.05);
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -73,6 +86,91 @@ a:hover {
         transform: translateY(-12px);
     }
 }
+
+/* الاسم */
+h1 {
+    font-size: 42px;
+    color: #ffd900;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 0 10px rgba(255,217,0,0.7);
+}
+
+p {
+    color: #ddd;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* الأزرار */
+.button {
+    display: block;
+    width: 100%;
+
+    padding: 18px;
+    margin: 14px 0;
+
+    border: 2px solid #ffd900;
+    border-radius: 18px;
+
+    background: rgba(10,10,10,0.65);
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    backdrop-filter: blur(8px);
+
+    transition: 0.3s;
+}
+
+/* حركة عند لمس الزر */
+.button:hover {
+    background: #ffd900;
+    color: black;
+
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 20px rgba(255,217,0,0.7);
+}
+
+.button:active {
+    transform: scale(0.97);
+}
+
+/* شعار صغير */
+.bat-symbol {
+    color: #ffd900;
+    font-size: 45px;
+
+    margin-bottom: 5px;
+
+    text-shadow:
+        0 0 20px #ffd900;
+}
+
+/* للجوال */
+@media (max-width: 500px) {
+
+    .container {
+        width: 88%;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .button {
+        padding: 16px;
+        font-size: 18px;
+    }
+
+}
 </style>
 </head>
 
@@ -82,81 +180,33 @@ a:hover {
 
     <div class="batman">🦇</div>
 
+    <div class="bat-symbol">🦇</div>
+
     <h1>ABDULLAH</h1>
 
-    <div class="subtitle">
-        Welcome to my Gotham
-    </div>
+    <p>Welcome to my Gotham</p>
 
-    <a href="https://github.com/" target="_blank">
-        GitHub
+    <a class="button"
+       href="https://github.com/">
+       🐙 GitHub
     </a>
 
-    <a href="https://instagram.com/" target="_blank">
-        Instagram
+    <a class="button"
+       href="https://instagram.com/">
+       📷 Instagram
     </a>
 
-    <a href="https://tiktok.com/" target="_blank">
-        TikTok
+    <a class="button"
+       href="https://tiktok.com/">
+       🎵 TikTok
     </a>
 
-    <a href="https://t.me/" target="_blank">
-        Telegram
+    <a class="button"
+       href="https://telegram.org/">
+       ✈️ Telegram
     </a>
 
 </div>
-/* 🦇 Batman animated background */
-body {
-    position: relative;
-    overflow-x: hidden;
-}
 
-body::before {
-    content: "🦇   🦇   🦇   🦇   🦇";
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 300%;
-    height: 100%;
-    z-index: -2;
-    font-size: 70px;
-    letter-spacing: 80px;
-    line-height: 180px;
-    opacity: 0.12;
-    color: #ffd900;
-    transform: rotate(-8deg);
-    animation: batsMove 18s linear infinite;
-    pointer-events: none;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -3;
-    background:
-        radial-gradient(circle at 50% 35%, rgba(255,215,0,0.18), transparent 25%),
-        linear-gradient(135deg, #020202, #111111, #000000);
-    animation: gothamGlow 5s ease-in-out infinite alternate;
-    pointer-events: none;
-}
-
-@keyframes batsMove {
-    from {
-        transform: translateX(0) rotate(-8deg);
-    }
-    to {
-        transform: translateX(35%) rotate(-8deg);
-    }
-}
-
-@keyframes gothamGlow {
-    from {
-        opacity: 0.65;
-    }
-    to {
-        opacity: 1;
-    }
-}
 </body>
 </html>
