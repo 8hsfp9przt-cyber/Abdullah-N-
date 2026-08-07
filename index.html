@@ -9,9 +9,9 @@
 <style>
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html, body {
@@ -20,277 +20,297 @@ html, body {
 }
 
 body {
-    min-height: 100vh;
-    background: #030407;
-    color: white;
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: white;
+    min-height: 100vh;
     overflow-x: hidden;
-    position: relative;
+
+    /* BATMAN BACKGROUND */
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 20, 0.45),
+            rgba(0, 0, 0, 0.75)
+        ),
+        url("batman.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    animation: backgroundMove 12s ease-in-out infinite alternate;
 }
 
-/* 🌃 مدينة Gotham متحركة */
+
+/* حركة الخلفية */
+@keyframes backgroundMove {
+
+    0% {
+        background-position: center center;
+        background-size: 100% auto;
+    }
+
+    100% {
+        background-position: center top;
+        background-size: 110% auto;
+    }
+}
+
+
+/* طبقة غامقة فوق الخلفية */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -3;
 
     background:
         radial-gradient(
-            circle at 50% 25%,
-            rgba(255, 220, 0, 0.18),
-            transparent 25%
-        ),
-        linear-gradient(
-            180deg,
-            #050609 0%,
-            #10131b 55%,
-            #020204 100%
+            circle at center,
+            transparent 15%,
+            rgba(0,0,0,0.55) 100%
         );
 
-    animation: nightMove 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
 }
 
-@keyframes nightMove {
-    from {
-        filter: brightness(0.75);
-    }
-
-    to {
-        filter: brightness(1.15);
-    }
-}
-
-/* 🦇 خفاش متحرك بالخلفية */
-body::after {
-    content: "🦇";
-    position: fixed;
-
-    font-size: 70px;
-    opacity: 0.18;
-
-    top: 18%;
-    left: -100px;
-
-    z-index: -1;
-
-    animation: batFly 12s linear infinite;
-}
-
-@keyframes batFly {
-
-    0% {
-        transform: translateX(0) translateY(0) rotate(-5deg);
-    }
-
-    25% {
-        transform: translateX(30vw) translateY(-40px) rotate(5deg);
-    }
-
-    50% {
-        transform: translateX(60vw) translateY(30px) rotate(-5deg);
-    }
-
-    75% {
-        transform: translateX(90vw) translateY(-30px) rotate(5deg);
-    }
-
-    100% {
-        transform: translateX(120vw) translateY(0) rotate(-5deg);
-    }
-}
-
-/* 🌕 Bat-Signal */
-.bat-signal {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-
-    top: -100px;
-    right: -80px;
-
-    border-radius: 50%;
-
-    background: radial-gradient(
-        circle,
-        rgba(255,220,0,0.20),
-        rgba(255,220,0,0.04) 45%,
-        transparent 70%
-    );
-
-    transform: rotate(25deg);
-
-    animation: signalMove 6s ease-in-out infinite alternate;
-
-    z-index: -2;
-}
-
-@keyframes signalMove {
-    from {
-        transform: rotate(15deg) scale(0.9);
-    }
-
-    to {
-        transform: rotate(35deg) scale(1.2);
-    }
-}
 
 /* المحتوى */
-
 .container {
+    position: relative;
+    z-index: 1;
+
     width: 90%;
-    max-width: 430px;
+    max-width: 500px;
+
+    margin: auto;
+    padding: 60px 0 50px;
+
     text-align: center;
-    padding: 40px 0;
 }
 
-/* 🦇 الشعار */
 
-.batman {
-    font-size: 85px;
-    margin-bottom: 15px;
+/* شعار باتمان */
+.batman-logo {
+    width: 150px;
+    height: 150px;
+
+    object-fit: contain;
+
+    margin-bottom: 20px;
 
     filter:
-        drop-shadow(0 0 10px #ffd900)
-        drop-shadow(0 0 25px #ffd900);
+        drop-shadow(0 0 15px #ffd900)
+        drop-shadow(0 0 35px rgba(255,215,0,0.6));
 
-    animation: batFloat 3s ease-in-out infinite;
+    animation: batmanFloat 3s ease-in-out infinite;
 }
 
-@keyframes batFloat {
+
+@keyframes batmanFloat {
 
     0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 
     50% {
-        transform: translateY(-15px);
+        transform: translateY(-12px) scale(1.04);
     }
 }
 
-/* الاسم */
 
+/* الاسم */
 h1 {
-    font-size: 42px;
+    font-size: 55px;
+    font-weight: 900;
+
     color: #ffd900;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
+
+    letter-spacing: 4px;
 
     text-shadow:
         0 0 10px #ffd900,
-        0 0 25px rgba(255,217,0,0.5);
+        0 0 25px rgba(255,215,0,0.5);
+
+    margin-bottom: 10px;
 }
 
-p {
-    color: #cccccc;
-    font-size: 17px;
-    margin-bottom: 30px;
+
+/* الوصف */
+.subtitle {
+    font-size: 20px;
+    color: #eeeeee;
+
+    margin-bottom: 35px;
+
+    text-shadow:
+        0 2px 8px black;
 }
+
 
 /* الأزرار */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
 
-.button {
+
+/* شكل الزر */
+.btn {
     display: block;
 
     width: 100%;
 
-    padding: 18px;
-
-    margin: 14px 0;
+    padding: 20px;
 
     border: 2px solid #ffd900;
-
     border-radius: 18px;
 
     background: rgba(10,10,10,0.65);
+
+    backdrop-filter: blur(8px);
 
     color: white;
 
     text-decoration: none;
 
-    font-size: 20px;
-
+    font-size: 22px;
     font-weight: bold;
 
-    backdrop-filter: blur(8px);
+    transition:
+        transform 0.25s,
+        background 0.25s,
+        box-shadow 0.25s;
 
     box-shadow:
-        0 0 10px rgba(255,217,0,0.15);
-
-    transition: all 0.3s ease;
+        0 5px 25px rgba(0,0,0,0.4);
 }
 
-/* عند الضغط */
 
-.button:hover {
+/* عند الضغط / اللمس */
+.btn:hover {
+    transform: scale(1.04);
+
     background: #ffd900;
+
     color: #050505;
 
-    transform: scale(1.03);
-
     box-shadow:
-        0 0 25px #ffd900;
+        0 0 20px #ffd900,
+        0 0 45px rgba(255,215,0,0.5);
 }
 
-.button:active {
-    transform: scale(0.96);
+
+/* أيقونة بسيطة */
+.icon {
+    margin-right: 8px;
 }
 
-/* للجوال */
 
-@media (max-width: 500px) {
+/* الحقوق */
+.footer {
+    margin-top: 45px;
+
+    color: rgba(255,255,255,0.7);
+
+    font-size: 14px;
+}
+
+
+/* للموبايل */
+@media (max-width: 600px) {
 
     .container {
-        width: 88%;
+        padding-top: 45px;
+    }
+
+    .batman-logo {
+        width: 130px;
+        height: 130px;
     }
 
     h1 {
-        font-size: 38px;
+        font-size: 42px;
+        letter-spacing: 2px;
     }
 
-    .batman {
-        font-size: 75px;
-    }
-
-    .button {
+    .subtitle {
         font-size: 18px;
-        padding: 16px;
+    }
+
+    .btn {
+        padding: 18px;
+        font-size: 20px;
     }
 }
 
 </style>
 </head>
 
-<body>
 
-<div class="bat-signal"></div>
+<body>
 
 <div class="container">
 
-    <div class="batman">🦇</div>
+    <!-- صورة باتمان -->
+    <img
+        class="batman-logo"
+        src="batman.gif"
+        alt="Batman"
+    >
 
+    <!-- الاسم -->
     <h1>ABDULLAH</h1>
 
-    <p>Welcome to my Gotham</p>
+    <p class="subtitle">
+        Welcome to my Gotham 🦇
+    </p>
 
-    <a class="button" href="https://github.com/">
-        🐙 GitHub
-    </a>
 
-    <a class="button" href="https://instagram.com/">
-        📷 Instagram
-    </a>
+    <!-- الأزرار -->
+    <div class="buttons">
 
-    <a class="button" href="https://tiktok.com/">
-        🎵 TikTok
-    </a>
+        <a
+            class="btn"
+            href="https://github.com/8hsfp9przt-cyber"
+            target="_blank"
+        >
+            🦇 GitHub
+        </a>
 
-    <a class="button" href="https://telegram.org/">
-        ✈️ Telegram
-    </a>
+
+        <a
+            class="btn"
+            href="#"
+            target="_blank"
+        >
+            📸 Instagram
+        </a>
+
+
+        <a
+            class="btn"
+            href="#"
+            target="_blank"
+        >
+            🎵 TikTok
+        </a>
+
+
+        <a
+            class="btn"
+            href="#"
+            target="_blank"
+        >
+            ✈️ Telegram
+        </a>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 Abdullah • Gotham
+    </div>
 
 </div>
 
