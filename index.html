@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Abdullah | Gotham</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            color: white;
+
+            /* صورة الباتمان المتحركة */
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.35),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("batman.gif");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+        }
+
+
+        /* المحتوى الرئيسي */
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+
+            min-height: 100vh;
+
+            padding: 70px 0 40px;
+
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        /* الاسم */
+
+        h1 {
+            font-size: 52px;
+
+            font-weight: 900;
+
+            letter-spacing: 5px;
+
+            color: #ffd900;
+
+            text-shadow:
+                0 0 10px rgba(255, 217, 0, 0.8),
+                0 0 25px rgba(255, 217, 0, 0.5);
+
+            margin-bottom: 15px;
+        }
+
+
+        /* الوصف */
+
+        .subtitle {
+            font-size: 20px;
+
+            color: white;
+
+            margin-bottom: 45px;
+
+            text-shadow:
+                0 2px 8px black;
+        }
+
+
+        /* الأزرار */
+
+        .buttons {
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+
+        .btn {
+            width: 100%;
+
+            padding: 20px;
+
+            border: 2px solid #ffd900;
+
+            border-radius: 18px;
+
+            background: rgba(0, 0, 0, 0.75);
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.5);
+
+            backdrop-filter: blur(5px);
+
+            transition: 0.3s ease;
+        }
+
+
+        /* تأثير عند لمس الزر */
+
+        .btn:hover {
+            background: #ffd900;
+
+            color: black;
+
+            transform: scale(1.03);
+
+            box-shadow:
+                0 0 20px #ffd900,
+                0 0 40px rgba(255, 217, 0, 0.5);
+        }
+
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+
+        /* أسفل الصفحة */
+
+        .footer {
+            margin-top: 45px;
+
+            font-size: 14px;
+
+            color: rgba(255, 255, 255, 0.8);
+
+            text-shadow:
+                0 2px 5px black;
+        }
+
+
+        /* تعديل للشاشات الصغيرة */
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 88%;
+
+                padding-top: 60px;
+            }
+
+            h1 {
+                font-size: 42px;
+
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+
+                margin-bottom: 35px;
+            }
+
+            .btn {
+                padding: 18px;
+
+                font-size: 19px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>ABDULLAH</h1>
+
+        <div class="subtitle">
+            Welcome to my Gotham
+        </div>
+
+
+        <div class="buttons">
+
+            <a
+                class="btn"
+                href="https://github.com/"
+                target="_blank">
+                GitHub
+            </a>
+
+
+            <a
+                class="btn"
+                href="#"
+                target="_blank">
+                Instagram
+            </a>
+
+
+            <a
+                class="btn"
+                href="#"
+                target="_blank">
+                TikTok
+            </a>
+
+
+            <a
+                class="btn"
+                href="#"
+                target="_blank">
+                Telegram
+            </a>
+
+        </div>
+
+
+        <div class="footer">
+            Gotham • Abdullah
+        </div>
+
+    </div>
+
+</body>
+</html>
