@@ -105,6 +105,58 @@ a:hover {
     </a>
 
 </div>
+/* 🦇 Batman animated background */
+body {
+    position: relative;
+    overflow-x: hidden;
+}
 
+body::before {
+    content: "🦇   🦇   🦇   🦇   🦇";
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    z-index: -2;
+    font-size: 70px;
+    letter-spacing: 80px;
+    line-height: 180px;
+    opacity: 0.12;
+    color: #ffd900;
+    transform: rotate(-8deg);
+    animation: batsMove 18s linear infinite;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(255,215,0,0.18), transparent 25%),
+        linear-gradient(135deg, #020202, #111111, #000000);
+    animation: gothamGlow 5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes batsMove {
+    from {
+        transform: translateX(0) rotate(-8deg);
+    }
+    to {
+        transform: translateX(35%) rotate(-8deg);
+    }
+}
+
+@keyframes gothamGlow {
+    from {
+        opacity: 0.65;
+    }
+    to {
+        opacity: 1;
+    }
+}
 </body>
 </html>
