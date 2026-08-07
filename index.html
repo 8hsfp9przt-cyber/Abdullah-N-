@@ -7,154 +7,240 @@
 <title>Abdullah | Gotham</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    background: #030407;
     color: white;
-
-    /* خلفية باتمان متحركة */
-    background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
-        url("https://i.imgur.com/6b1eKQy.gif")
-        center / cover fixed no-repeat;
-
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-
     overflow-x: hidden;
+    position: relative;
 }
 
-/* تأثير ضباب متحرك */
+/* 🌃 مدينة Gotham متحركة */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: -3;
 
     background:
         radial-gradient(
-            circle at 50% 40%,
-            rgba(255, 220, 0, 0.12),
-            transparent 35%
+            circle at 50% 25%,
+            rgba(255, 220, 0, 0.18),
+            transparent 25%
+        ),
+        linear-gradient(
+            180deg,
+            #050609 0%,
+            #10131b 55%,
+            #020204 100%
         );
 
-    animation: fog 8s ease-in-out infinite alternate;
+    animation: nightMove 8s ease-in-out infinite alternate;
 }
 
-@keyframes fog {
+@keyframes nightMove {
     from {
-        transform: scale(1);
-        opacity: 0.5;
+        filter: brightness(0.75);
     }
 
     to {
-        transform: scale(1.15);
-        opacity: 1;
+        filter: brightness(1.15);
     }
 }
+
+/* 🦇 خفاش متحرك بالخلفية */
+body::after {
+    content: "🦇";
+    position: fixed;
+
+    font-size: 70px;
+    opacity: 0.18;
+
+    top: 18%;
+    left: -100px;
+
+    z-index: -1;
+
+    animation: batFly 12s linear infinite;
+}
+
+@keyframes batFly {
+
+    0% {
+        transform: translateX(0) translateY(0) rotate(-5deg);
+    }
+
+    25% {
+        transform: translateX(30vw) translateY(-40px) rotate(5deg);
+    }
+
+    50% {
+        transform: translateX(60vw) translateY(30px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateX(90vw) translateY(-30px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateX(120vw) translateY(0) rotate(-5deg);
+    }
+}
+
+/* 🌕 Bat-Signal */
+.bat-signal {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+
+    top: -100px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(255,220,0,0.20),
+        rgba(255,220,0,0.04) 45%,
+        transparent 70%
+    );
+
+    transform: rotate(25deg);
+
+    animation: signalMove 6s ease-in-out infinite alternate;
+
+    z-index: -2;
+}
+
+@keyframes signalMove {
+    from {
+        transform: rotate(15deg) scale(0.9);
+    }
+
+    to {
+        transform: rotate(35deg) scale(1.2);
+    }
+}
+
+/* المحتوى */
 
 .container {
     width: 90%;
     max-width: 430px;
     text-align: center;
-    padding: 30px 0;
+    padding: 40px 0;
 }
 
-/* شعار باتمان */
+/* 🦇 الشعار */
+
 .batman {
-    font-size: 75px;
+    font-size: 85px;
     margin-bottom: 15px;
 
-    filter: drop-shadow(0 0 15px #ffd900);
+    filter:
+        drop-shadow(0 0 10px #ffd900)
+        drop-shadow(0 0 25px #ffd900);
 
-    animation: float 3s ease-in-out infinite;
+    animation: batFloat 3s ease-in-out infinite;
 }
 
-@keyframes float {
+@keyframes batFloat {
+
     0%, 100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-12px);
+        transform: translateY(-15px);
     }
 }
 
 /* الاسم */
+
 h1 {
     font-size: 42px;
     color: #ffd900;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     margin-bottom: 8px;
 
     text-shadow:
-        0 0 10px rgba(255,217,0,0.7);
+        0 0 10px #ffd900,
+        0 0 25px rgba(255,217,0,0.5);
 }
 
 p {
-    color: #ddd;
-    font-size: 16px;
+    color: #cccccc;
+    font-size: 17px;
     margin-bottom: 30px;
 }
 
 /* الأزرار */
+
 .button {
     display: block;
+
     width: 100%;
 
     padding: 18px;
+
     margin: 14px 0;
 
     border: 2px solid #ffd900;
+
     border-radius: 18px;
 
     background: rgba(10,10,10,0.65);
 
     color: white;
+
     text-decoration: none;
 
     font-size: 20px;
+
     font-weight: bold;
 
     backdrop-filter: blur(8px);
 
-    transition: 0.3s;
+    box-shadow:
+        0 0 10px rgba(255,217,0,0.15);
+
+    transition: all 0.3s ease;
 }
 
-/* حركة عند لمس الزر */
+/* عند الضغط */
+
 .button:hover {
     background: #ffd900;
-    color: black;
+    color: #050505;
 
     transform: scale(1.03);
 
     box-shadow:
-        0 0 20px rgba(255,217,0,0.7);
+        0 0 25px #ffd900;
 }
 
 .button:active {
-    transform: scale(0.97);
-}
-
-/* شعار صغير */
-.bat-symbol {
-    color: #ffd900;
-    font-size: 45px;
-
-    margin-bottom: 5px;
-
-    text-shadow:
-        0 0 20px #ffd900;
+    transform: scale(0.96);
 }
 
 /* للجوال */
+
 @media (max-width: 500px) {
 
     .container {
@@ -165,45 +251,45 @@ p {
         font-size: 38px;
     }
 
-    .button {
-        padding: 16px;
-        font-size: 18px;
+    .batman {
+        font-size: 75px;
     }
 
+    .button {
+        font-size: 18px;
+        padding: 16px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
+<div class="bat-signal"></div>
+
 <div class="container">
 
     <div class="batman">🦇</div>
-
-    <div class="bat-symbol">🦇</div>
 
     <h1>ABDULLAH</h1>
 
     <p>Welcome to my Gotham</p>
 
-    <a class="button"
-       href="https://github.com/">
-       🐙 GitHub
+    <a class="button" href="https://github.com/">
+        🐙 GitHub
     </a>
 
-    <a class="button"
-       href="https://instagram.com/">
-       📷 Instagram
+    <a class="button" href="https://instagram.com/">
+        📷 Instagram
     </a>
 
-    <a class="button"
-       href="https://tiktok.com/">
-       🎵 TikTok
+    <a class="button" href="https://tiktok.com/">
+        🎵 TikTok
     </a>
 
-    <a class="button"
-       href="https://telegram.org/">
-       ✈️ Telegram
+    <a class="button" href="https://telegram.org/">
+        ✈️ Telegram
     </a>
 
 </div>
